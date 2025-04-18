@@ -10,6 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ap.cx/react-fullpage": "^0.3.0",
+    "@fullpage/react-fullpage": "^0.1.47",
+    "@nivo/bar": "^0.88.0",
     "@nivo/core": "^0.88.0",
     "@nivo/treemap": "^0.88.0",
     "antd": "^5.24.7",

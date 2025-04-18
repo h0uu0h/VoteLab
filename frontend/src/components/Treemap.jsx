@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { ResponsiveTreeMap } from "@nivo/treemap";
 import styles from "./Treemap.module.css";
-import voteIcon from "../../assets/thumb_up.svg";
+import voteIcon from "../assets/thumb_up.svg";
 
 // 单个投票项组件
 const VoteItem = ({ node, voteHandler }) => {

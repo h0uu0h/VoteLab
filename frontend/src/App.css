@@ -1,5 +1,35 @@
-#root {
-  margin: 0 auto;
+/* 基础样式 */
+body,
+html {
+  margin: 0;
   padding: 0;
-  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.app-container {
+  position: relative;
+}
+
+.section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slide {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#fp-nav ul li {
+  height: auto;
+}
+
+/* 导航点样式 */
+#fp-nav ul li a span,
+.fp-slidesNav ul li a span {
+  background: #333;
 }

@@ -39,6 +39,12 @@ vote_data = [
 async def get_votes():
     return vote_data
 
+@app.post("/api/vote/new")
+async def create_vote(vote_item: VoteItem):
+    global vote_data
+    vote_data.append(vote_item)
+    return {"message": f"新投票项 {vote_item.name} 已添加。"}
+
 @app.post("/api/vote/{vote_id}")
 async def vote(vote_id: int):
     global vote_data
