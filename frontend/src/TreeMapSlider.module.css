@@ -1,0 +1,93 @@
+.container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.view {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: white;
+}
+
+.hint {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+}
+
+/* 搜索视图样式 */
+.searchHeader {
+    display: flex;
+    padding: 15px;
+    background: #f5f5f5;
+}
+
+.searchHeader input {
+    flex: 1;
+    margin-left: 10px;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.searchResults {
+    padding: 15px;
+}
+
+.searchItem {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+/* 柱状图视图样式 */
+.barsHeader {
+    padding: 15px;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+}
+
+.barsHeader h3 {
+    margin: 0 auto;
+}
+
+.barsContainer {
+    padding: 15px;
+}
+
+.barItem {
+    margin-bottom: 15px;
+}
+
+.barLabel {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.barWrapper {
+    width: 100%;
+    background: #f0f0f0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.bar {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 10px;
+    color: white;
+    font-weight: bold;
+    transition: width 0.5s ease;
+}
+
+.barValue {
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}

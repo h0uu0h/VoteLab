@@ -1,0 +1,67 @@
+.voteItem {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    color: white;
+    font-size: 18px;
+    padding: 4px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    box-sizing: border-box;
+    border-radius: 0px;
+}
+
+/* 添加 root 节点样式 */
+.rootNode {
+    margin: 0;
+    padding: 2px;
+    font-size: 12px;
+    font-weight: bold;
+    justify-content: space-between;
+    align-items: flex-end;
+    box-sizing: border-box;
+}
+
+.voteBtn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 6px;
+    padding: 4px 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    color: white;
+    font-weight: bold;
+    z-index: 2;
+
+}
+
+.voteBtn:hover {
+    background-color: rgba(255, 255, 255, 0.35);
+}
+
+.voteIcon {
+    width: 16px;
+    height: 16px;
+    fill: white;
+}
+
+.voteCount {
+    font-size: 16px;
+}
+
+.voteImg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* 保持图片比例并铺满 */
+    z-index: 1;
+    /* 底层 */
+}
