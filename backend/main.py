@@ -27,12 +27,31 @@ class VoteItem(BaseModel):
     imageId: str = None  # 新增的图片URL字段
 
 vote_data = [
-    VoteItem(id=1, name="🐟鱼", votes=3, color="hsl(100, 70%, 60%)", imageId="1"),
-    VoteItem(id=2, name="🏀球", votes=5, color="hsl(200, 70%, 60%)", imageId="2"),
+    VoteItem(id=1, name="🐟鱼", votes=6, color="hsl(100, 70%, 60%)", imageId="1"),
+    VoteItem(id=2, name="🏀球", votes=25, color="hsl(200, 70%, 60%)", imageId="2"),
     VoteItem(id=3, name="🐻熊", votes=2, color="hsl(300, 70%, 60%)", imageId="3"),
-    VoteItem(id=4, name="🦑水母", votes=4, color="hsl(50, 70%, 60%)", imageId="4"),
-    VoteItem(id=5, name="🦐虾", votes=4, color="hsl(50, 70%, 60%)", imageId="5"),
+    VoteItem(id=4, name="🦑水母", votes=10, color="hsl(50, 70%, 60%)", imageId="4"),
+    VoteItem(id=5, name="🦐虾", votes=12, color="hsl(50, 70%, 60%)", imageId="5"),
     VoteItem(id=6, name="🐙章鱼", votes=4, color="hsl(50, 70%, 60%)", imageId="6"),
+    VoteItem(id=7, name="鱼", votes=3, color="hsl(50, 70%, 60%)", imageId="6"),
+    VoteItem(id=8, name="2鱼", votes=1, color="hsl(50, 70%, 60%)", imageId="6"),
+    VoteItem(id=9, name="3鱼地方屡屡cwecwvvvvvvvvv", votes=4, color="hsl(50, 70%, 60%)", imageId="6"),
+    VoteItem(id=10, name="34鱼", votes=4, color="hsl(50, 70%, 60%)", imageId="6"),
+    VoteItem(id=11, name="5鱼", votes=4, color="hsl(50, 70%, 60%)", imageId="6"),
+    VoteItem(id=12, name="6鱼", votes=4, color="hsl(50, 70%, 60%)", imageId="6"),
+    VoteItem(id=13, name="7鱼", votes=4, color="hsl(50, 70%, 60%)", imageId="6"),
+    VoteItem(id=14, name="🐙8", votes=4, color="hsl(50, 70%, 60%)", imageId="6"),
+    VoteItem(id=15, name="🐙9", votes=4, color="hsl(50, 70%, 60%)", imageId="6"),
+    VoteItem(id=16, name="🐙6", votes=4, color="hsl(50, 70%, 60%)", imageId="6"),
+    VoteItem(id=17, name="🐙78", votes=4, color="hsl(50, 70%, 60%)", imageId="6"),
+    VoteItem(id=18, name="🐙gg", votes=4, color="hsl(50, 70%, 60%)", imageId="6"),
+    VoteItem(id=19, name="🐙nn", votes=4, color="hsl(50, 70%, 60%)", imageId="6"),
+    VoteItem(id=20, name="🐙vd", votes=4, color="hsl(50, 70%, 60%)", imageId="6"),
+    VoteItem(id=21, name="🐙n", votes=4, color="hsl(50, 70%, 60%)", imageId="6"),
+    VoteItem(id=22, name="🐙m", votes=4, color="hsl(50, 70%, 60%)", imageId="6"),
+    VoteItem(id=23, name="🐙fr", votes=10, color="hsl(50, 70%, 60%)", imageId="6"),
+    VoteItem(id=24, name="🐙vvd", votes=2, color="hsl(50, 70%, 60%)", imageId="6"),
+    VoteItem(id=25, name="🐙ww", votes=1, color="hsl(50, 70%, 60%)", imageId="6"),
 ]
 
 @app.get("/api/votes", response_model=List[VoteItem])

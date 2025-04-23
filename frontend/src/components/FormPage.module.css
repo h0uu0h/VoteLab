@@ -1,21 +1,30 @@
 .container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    align-items: flex-start;
     justify-content: center;
-    height: 100%;
+    gap: 40px;
+    padding: 20px;
     width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.leftPanel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .title {
     color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    margin-bottom: 20px;
-    font-size: 2rem;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
 }
+
 .searchSection {
     display: flex;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .searchInput {
@@ -35,14 +44,29 @@
 }
 
 .searchResults {
-    margin-bottom: 20px;
+    margin-top: 10px;
     max-height: 200px;
     overflow-y: auto;
 }
 
+.toggleFormButton {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
 .form {
+    flex: 1;
     display: flex;
     flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+    min-width: 300px;
 }
 
 .formGroup {
@@ -57,7 +81,7 @@
 
 .formGroup input {
     width: 100%;
-    padding: 10px;
+    padding: 10px 0 10px 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
 }
@@ -70,9 +94,63 @@
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
-    margin-top: 10px;
 }
 
 .submitButton:hover {
     background-color: #0b7dda;
+}
+
+/* 弹窗相关 */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modalContent {
+    background: rgb(0, 0, 0);
+    padding: 30px;
+    border-radius: 10px;
+    width: 400px;
+    max-width: 90%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modalActions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.cancelButton {
+    padding: 10px 15px;
+    background-color: #999;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.cancelButton:hover {
+    background-color: #666;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

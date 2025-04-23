@@ -5,31 +5,50 @@ html {
   padding: 0;
   font-family: Arial, sans-serif;
 }
-
 .app-container {
+  height: 100vh;
+  overflow: hidden;
   position: relative;
 }
 
-.section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.slide {
+.sections-container {
   height: 100%;
   width: 100%;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+.fullpage-section {
+  width: 100%;
+}
+
+.scrollable-inner-section {
+  overflow-y: auto;
+}
+
+.navigation-dots {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  gap: 10px;
+  z-index: 10;
 }
 
-#fp-nav ul li {
-  height: auto;
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #ccc;
+  cursor: pointer;
 }
 
-/* 导航点样式 */
-#fp-nav ul li a span,
-.fp-slidesNav ul li a span {
-  background: #333;
+.dot.active {
+  width: 16px;
+  height: 16px;
+  background-color: #ffffff;
 }

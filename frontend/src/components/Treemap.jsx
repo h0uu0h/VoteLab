@@ -10,46 +10,53 @@ const VoteItem = ({ node, voteHandler }) => {
     const isRoot = isParent === true;
     const imageUrl = `/src/assets/${data.imageId}.jpg`;
     const WorH = height > width;
+    const shouldShowLabel = node.width > 36 && node.height > 36;
     console.log(node);
     console.log(imageUrl);
     return (
-        <foreignObject x={x} y={y} width={width} height={height}>
-            <div
-                className={`${styles.voteItem} ${
-                    isRoot ? styles.rootNode : ""
-                }`}
-                style={{
-                    width: "100%",
-                    height: "100%",
-                    backgroundImage: `url(${imageUrl})`,
-                    backgroundSize: WorH ? "100% auto" : "auto 100%",
-                    backgroundRepeat: "repeat",
-                    backgroundPosition: "center",
-                    backgroundColor: data.color || "#000",
-                }}
-                onClick={() => console.log("Clicked", node.data)}>
-                <div
-                    style={{
-                        alignSelf: "flex-start",
-                        fontWeight: "bold",
-                        zIndex: "2",
-                    }}>
-                    {data.name}
-                </div>
-                {!isRoot && (
-                    <button
-                        className={styles.voteBtn}
-                        onClick={() => voteHandler(data.id)}>
-                        <img
-                            className={styles.voteIcon}
-                            src={voteIcon}
-                            alt=""
-                        />
-                        <span className={styles.voteCount}>{data.value}</span>
-                    </button>
-                )}
-            </div>
-        </foreignObject>
+        <>
+            {shouldShowLabel && (
+                <foreignObject x={x} y={y} width={width} height={height} >
+                    <div
+                        className={`${styles.voteItem} ${
+                            isRoot ? styles.rootNode : ""
+                        }`}
+                        style={{
+                            width: "100%",
+                            height: "100%",
+                            backgroundImage: `url(${imageUrl})`,
+                            backgroundSize: WorH ? "100% auto" : "auto 100%",
+                            backgroundRepeat: "repeat",
+                            backgroundPosition: "center",
+                            backgroundColor: data.color || "#000",
+                        }}
+                        onClick={() => console.log("Clicked", node.data)}>
+                        <div
+                            style={{
+                                alignSelf: "flex-start",
+                                fontWeight: "bold",
+                                zIndex: "2",
+                            }}>
+                            {data.name}
+                        </div>
+                        {!isRoot && (
+                            <button
+                                className={styles.voteBtn}
+                                onClick={() => voteHandler(data.id)}>
+                                <img
+                                    className={styles.voteIcon}
+                                    src={voteIcon}
+                                    alt=""
+                                />
+                                <span className={styles.voteCount}>
+                                    {data.value}
+                                </span>
+                            </button>
+                        )}
+                    </div>
+                </foreignObject>
+            )}
+        </>
     );
 };
 
@@ -100,12 +107,10 @@ const Treemap = () => {
                 data={data}
                 identity="name"
                 value="value"
-                labelSkipSize={12}
-                margin={{ top: 10, right: 10, bottom: 10, left: 10 }}
+                margin={{ top: 10, rig32ht: 10, bottom: 10, left: 10 }}
                 nodeComponent={(props) => (
                     <VoteItem node={props.node} voteHandler={handleVote} />
                 )}
-                colors={{ scheme: "nivo" }}
             />
         </div>
     );
