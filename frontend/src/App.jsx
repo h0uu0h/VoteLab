@@ -3,6 +3,8 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import Treemap from "./components/Treemap";
 import BarChart from "./components/BarChart";
 import FormPage from "./components/FormPage";
+import SearchModal from "./components/SearchModal";
+
 import "./App.css";
 
 const App = () => {
@@ -11,6 +13,8 @@ const App = () => {
     const sectionRefs = useRef([]);
     const [activeIndex, setActiveIndex] = useState(1);
     const isScrolling = useRef(false);
+    const [showSearchModal, setShowSearchModal] = useState(false);
+    const [searchInitialTerm, setSearchInitialTerm] = useState("");
 
     const scrollToSection = useCallback((index) => {
         const container = containerRef.current;
@@ -97,6 +101,10 @@ const App = () => {
     }, [scrollToSection]);
 
     useEffect(() => {
+        document.body.classList.toggle("modal-open", showSearchModal);
+    }, [showSearchModal]);
+
+    useEffect(() => {
         const container = containerRef.current;
         container.addEventListener("scroll", handleScroll);
         container.addEventListener("wheel", handleWheel, { passive: false });
@@ -117,6 +125,12 @@ const App = () => {
 
     return (
         <div className="app-container">
+            {showSearchModal && (
+                <SearchModal
+                    initialTerm={searchInitialTerm}
+                    onClose={() => setShowSearchModal(false)}
+                />
+            )}
             <div className="sections-container" ref={containerRef}>
                 {sections.map((_, index) => (
                     <section
@@ -128,13 +142,20 @@ const App = () => {
                         style={{
                             height:
                                 index === 0
-                                    ? "40vh"
+                                    ? "35vh"
                                     : index === 2
                                     ? "auto"
                                     : "100vh",
                             overflowY: index === 2 ? "auto" : "hidden",
                         }}>
-                        {index === 0 && <FormPage />}
+                        {index === 0 && (
+                            <FormPage
+                                onSearchFocus={() => {
+                                    setSearchInitialTerm(""); // 如果你之后想预填内容，可以传入值
+                                    setShowSearchModal(true);
+                                }}
+                            />
+                        )}
                         {index === 1 && <Treemap />}
                         {index === 2 && (
                             <div className="scrollable-inner">

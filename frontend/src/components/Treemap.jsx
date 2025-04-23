@@ -102,7 +102,7 @@ const Treemap = () => {
     };
 
     return (
-        <div style={{ height: "100vh", width: "100vw", overflow: "hidden" }}>
+        <div style={{ height: "100vh", width: "100%", overflow: "hidden" }}>
             <ResponsiveTreeMap
                 data={data}
                 identity="name"
