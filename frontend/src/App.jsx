@@ -4,7 +4,6 @@ import Treemap from "./components/Treemap";
 import BarChart from "./components/BarChart";
 import FormPage from "./components/FormPage";
 import SearchModal from "./components/SearchModal";
-
 import "./App.css";
 
 const App = () => {
@@ -40,7 +39,6 @@ const App = () => {
         }
     }, []);
 
-    // 🌟 关键改法：通过 offsetTop + offsetHeight 计算当前在哪一屏
     const handleScroll = useCallback(() => {
         const container = containerRef.current;
         const containerScrollTop = container.scrollTop;
@@ -52,11 +50,19 @@ const App = () => {
 
         sectionRefs.current.forEach((section, index) => {
             if (!section) return;
+
             const sectionTop = section.offsetTop;
             const sectionHeight = section.offsetHeight;
             const sectionCenter = sectionTop + sectionHeight / 2;
 
-            const distance = Math.abs(containerCenter - sectionCenter);
+            // 计算当前 section 占屏高度百分比
+            const vhRatio = sectionHeight / containerHeight;
+
+            // 比例越小，给更小的距离权重（0.5 ~ 1）
+            const weight = Math.min(1, Math.max(0.5, vhRatio));
+
+            const distance = Math.abs(containerCenter - sectionCenter) * weight;
+
             if (distance < closestDistance) {
                 closestDistance = distance;
                 closestIndex = index;
@@ -142,7 +148,7 @@ const App = () => {
                         style={{
                             height:
                                 index === 0
-                                    ? "35vh"
+                                    ? "20vh"
                                     : index === 2
                                     ? "auto"
                                     : "100vh",

@@ -24,10 +24,11 @@ const CustomTooltip = ({ value, color, indexValue }) => (
             }}
         />
         <div>
-            <div style={{color: "black", fontWeight: "bold", marginBottom: 4 }}>
+            <div
+                style={{ color: "black", fontWeight: "bold", marginBottom: 4 }}>
                 {indexValue}
             </div>
-            <div style={{color: "black", fontSize: 12 }}>票数: {value}</div>
+            <div style={{ color: "black", fontSize: 12 }}>票数: {value}</div>
         </div>
     </div>
 );
@@ -37,22 +38,29 @@ const BarChart = () => {
     const [height, setHeight] = useState(500);
 
     useEffect(() => {
-        fetch("http://127.0.0.1:8000/api/votes")
-            .then((res) => res.json())
-            .then((voteItems) => {
-                const formatted = voteItems
-                    .map((item) => ({
-                        id: item.id,
-                        name: item.name,
-                        votes: item.votes,
-                        color:
-                            item.color ||
-                            `hsl(${Math.random() * 360}, 70%, 60%)`,
-                    }))
-                    .sort((a, b) => a.votes - b.votes);
-                setData(formatted);
-                setHeight(formatted.length * 30);
-            });
+        const fetchVotes = () => {
+            fetch("http://127.0.0.1:8000/api/votes")
+                .then((res) => res.json())
+                .then((voteItems) => {
+                    const formatted = voteItems
+                        .map((item) => ({
+                            id: item.id,
+                            name: item.name,
+                            votes: item.votes,
+                            color:
+                                item.color ||
+                                `hsl(${Math.random() * 360}, 70%, 60%)`,
+                        }))
+                        .sort((a, b) => a.votes - b.votes);
+                    setData(formatted);
+                    setHeight(formatted.length * 30);
+                });
+            // console.log("轮询！");
+        };
+        fetchVotes(); // 初始加载
+        const interval = setInterval(fetchVotes, 1000); // 每3秒刷新一次
+
+        return () => clearInterval(interval); // 组件卸载时清理定时器
     }, []);
 
     return (
@@ -95,10 +103,10 @@ const BarChart = () => {
                     }}
                     labelSkipWidth={12}
                     labelSkipHeight={12}
-                    // labelTextColor={{
-                    //     from: "color",
-                    //     modifiers: [["darker", 1.6]],
-                    // }}
+                    labelTextColor={{
+                        from: "color",
+                        modifiers: [["darker", 1.6]],
+                    }}
                     animate={true}
                     motionStiffness={90}
                     motionDamping={15}

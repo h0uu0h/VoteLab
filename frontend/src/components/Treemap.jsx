@@ -11,12 +11,10 @@ const VoteItem = ({ node, voteHandler }) => {
     const imageUrl = `/src/assets/${data.imageId}.jpg`;
     const WorH = height > width;
     const shouldShowLabel = node.width > 36 && node.height > 36;
-    console.log(node);
-    console.log(imageUrl);
     return (
         <>
             {shouldShowLabel && (
-                <foreignObject x={x} y={y} width={width} height={height} >
+                <foreignObject x={x} y={y} width={width} height={height}>
                     <div
                         className={`${styles.voteItem} ${
                             isRoot ? styles.rootNode : ""
@@ -68,20 +66,27 @@ const Treemap = () => {
     });
 
     useEffect(() => {
-        // 从 FastAPI 获取投票数据
-        fetch("http://127.0.0.1:8000/api/votes")
-            .then((res) => res.json())
-            .then((voteItems) => {
-                const formatted = voteItems.map((item) => ({
-                    id: item.id,
-                    name: item.name,
-                    value: item.votes,
-                    color:
-                        item.color || `hsl(${Math.random() * 360}, 70%, 60%)`,
-                    imageId: item.imageId || null, // 新增图片字段
-                }));
-                setData({ name: "最受欢迎的cp~", children: formatted });
-            });
+        const fetchVotes = () => {
+            // 从 FastAPI 获取投票数据
+            fetch("http://127.0.0.1:8000/api/votes")
+                .then((res) => res.json())
+                .then((voteItems) => {
+                    const formatted = voteItems.map((item) => ({
+                        id: item.id,
+                        name: item.name,
+                        value: item.votes,
+                        color:
+                            item.color ||
+                            `hsl(${Math.random() * 360}, 70%, 60%)`,
+                        imageId: item.imageId || null, // 新增图片字段
+                    }));
+                    setData({ name: "最受欢迎的cp~", children: formatted });
+                });
+        };
+        fetchVotes(); // 初始加载
+        const interval = setInterval(fetchVotes, 1000); // 每3秒刷新一次
+
+        return () => clearInterval(interval);
     }, []);
 
     const handleVote = (id) => {

@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import styles from "./FormPage.module.css";
-import searchIcon from "../assets/search.svg"
+import searchIcon from "../assets/search.svg";
 
-const FormPage = ({ onAddNewItem, onSearchFocus}) => {
+const FormPage = ({ onAddNewItem, onSearchFocus }) => {
     const [formData, setFormData] = useState({
         name: "",
         color: "",
@@ -18,11 +18,14 @@ const FormPage = ({ onAddNewItem, onSearchFocus}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const randomId = `id_${Date.now()}_${Math.floor(
+            Math.random() * 10000
+        )}`;
         try {
             const response = await fetch("http://127.0.0.1:8000/api/vote/new", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ ...formData, votes: 0 }),
+                body: JSON.stringify({ id: randomId, ...formData, votes: 1 }),
             });
 
             if (response.ok) {
@@ -40,7 +43,7 @@ const FormPage = ({ onAddNewItem, onSearchFocus}) => {
         <div className={styles.container}>
             {/* A行: 标题 + 搜索框 + 添加按钮 */}
             <div className={styles.headerRow}>
-                <h1 className={styles.title}>投票选项</h1>
+                <h1 className={styles.title}>来你支持的cp吧~</h1>
                 <div className={styles.searchInputContainer}>
                     <img src={searchIcon} alt="" />
                     <input
